@@ -6,13 +6,7 @@ sudo chgrp -R vscode ~/.kube
 HOST_IP=`hostname -I | awk '{ print $1 ; exit }'`
 
 set -euo pipefail
-
-reg_name='kind-registry'
-reg_port='5000'
-running="$(docker inspect -f '{{.State.Running}}' "${reg_name}" 2>/dev/null || true)"
-if [ "${running}" != 'true' ]; then
-  docker run -d --restart=always -p "${reg_port}:5000" --name "${reg_name}" registry:2
-fi
+source settings.sh
 
 kind_running="$(docker inspect -f '{{.State.Running}}' "example-control-plane" 2>/dev/null || true)"
 if [ "${kind_running}" != 'true' ]; then
@@ -23,6 +17,7 @@ networking:
   apiServerAddress: "${HOST_IP}"
 nodes:
 - role: control-plane
+  image: ${reg_name}:${reg_port}/node:${KUBERNETES_REPO_COMMIT}
   extraMounts:
   - hostPath: /workspaces
     containerPath: /workspaces

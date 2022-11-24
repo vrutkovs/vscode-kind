@@ -2,5 +2,5 @@
 set -euo pipefail
 source settings.sh
 
-docker build -ti ${image_name} custom-kubelet
+docker build -t ${image_name} -f custom-kubelet/Dockerfile custom-kubelet
 docker push ${image_name}

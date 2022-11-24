@@ -40,7 +40,7 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add
     chmod +x ./kubectl && \
     mv ./kubectl /usr/local/bin/kubectl
 
-ENV KIND_VERSION 0.17.0
+ENV KIND_VERSION v0.17.0
 # Install kind
 RUN curl -Lo ./kind "https://kind.sigs.k8s.io/dl/${KIND_VERSION}/kind-$(uname)-amd64" && \
     chmod +x ./kind && mv ./kind /usr/local/bin

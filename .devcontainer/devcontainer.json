@@ -1,9 +1,9 @@
 {
   // for a faster startup time, we're specifing a pre-built version of the container image instead 
   //  of letting VSCode build the container image from the 'dockerFile' and 'context' vars below
-  "image": "jeremysf/vscode-kind",
-  // "dockerFile": "Dockerfile",
-  // "context": ".",
+  // "image": "jeremysf/vscode-kind",
+  "dockerFile": "Dockerfile",
+  "context": ".",
   "extensions": [
     "ms-azuretools.vscode-docker",
     "ms-kubernetes-tools.vscode-kubernetes-tools",
